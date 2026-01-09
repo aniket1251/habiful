@@ -2,7 +2,6 @@
 # Habiful
 
 Habiful is a full-stack rental property management platform that models real-world rental workflows such as property listing, applications, approvals, and lease management.  
-The project is designed to reflect how a production system is built, deployed, and debugged end-to-end.
 
 🔗 **Live Demo**  
 <https://main.d3tjyubg6cgnal.amplifyapp.com>
