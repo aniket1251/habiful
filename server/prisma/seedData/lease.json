@@ -1,0 +1,47 @@
+[
+  {
+    "id": 201,
+    "startDate": "2025-06-01T00:00:00Z",
+    "endDate": "2026-05-31T00:00:00Z",
+    "rent": 8500,
+    "deposit": 8500,
+    "propertyId": 101,
+    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+  },
+  {
+    "id": 202,
+    "startDate": "2025-06-01T00:00:00Z",
+    "endDate": "2026-05-31T00:00:00Z",
+    "rent": 9500,
+    "deposit": 9500,
+    "propertyId": 102,
+    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+  },
+  {
+    "id": 203,
+    "startDate": "2025-06-05T00:00:00Z",
+    "endDate": "2026-06-04T00:00:00Z",
+    "rent": 7800,
+    "deposit": 7800,
+    "propertyId": 103,
+    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+  },
+  {
+    "id": 204,
+    "startDate": "2025-06-10T00:00:00Z",
+    "endDate": "2026-06-09T00:00:00Z",
+    "rent": 9900,
+    "deposit": 9900,
+    "propertyId": 104,
+    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+  },
+  {
+    "id": 205,
+    "startDate": "2025-06-15T00:00:00Z",
+    "endDate": "2026-06-14T00:00:00Z",
+    "rent": 8800,
+    "deposit": 8800,
+    "propertyId": 105,
+    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+  }
+]

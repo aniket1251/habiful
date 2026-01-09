@@ -1,0 +1,42 @@
+[
+  {
+    "amountDue": 8500,
+    "amountPaid": 8500,
+    "dueDate": "2026-06-01T00:00:00Z",
+    "paymentDate": "2025-05-30T00:00:00Z",
+    "paymentStatus": "Paid",
+    "lease": { "connect": { "id": 201 } }
+  },
+  {
+    "amountDue": 9500,
+    "amountPaid": 0,
+    "dueDate": "2026-06-01T00:00:00Z",
+    "paymentDate": "2025-05-30T00:00:00Z",
+    "paymentStatus": "Pending",
+    "lease": { "connect": { "id": 202 } }
+  },
+  {
+    "amountDue": 7800,
+    "amountPaid": 3900,
+    "dueDate": "2026-06-05T00:00:00Z",
+    "paymentDate": "2025-06-03T00:00:00Z",
+    "paymentStatus": "PartiallyPaid",
+    "lease": { "connect": { "id": 203 } }
+  },
+  {
+    "amountDue": 9900,
+    "amountPaid": 9900,
+    "dueDate": "2026-06-10T00:00:00Z",
+    "paymentDate": "2025-06-09T00:00:00Z",
+    "paymentStatus": "Paid",
+    "lease": { "connect": { "id": 204 } }
+  },
+  {
+    "amountDue": 8800,
+    "amountPaid": 0,
+    "dueDate": "2026-06-15T00:00:00Z",
+    "paymentDate": "2025-06-14T00:00:00Z",
+    "paymentStatus": "Pending",
+    "lease": { "connect": { "id": 205 } }
+  }
+]

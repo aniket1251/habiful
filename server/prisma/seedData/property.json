@@ -1,0 +1,173 @@
+[
+  {
+    "id": 101,
+    "name": "Indiranagar Premium Apartment",
+    "description": "Modern 2BHK apartment close to metro, cafes, and tech parks.",
+    "phoneNumber": "+918923187401",
+    "pricePerMonth": 8500,
+    "securityDeposit": 8500,
+    "applicationFee": 500,
+    "photoUrls": [
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/1.png",
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/2.png"
+    ],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "Parking",
+      "Gym",
+      "WiFi"
+    ],
+    "highlights": [
+      "CloseToTransit",
+      "HighSpeedInternetAccess"
+    ],
+    "isPetsAllowed": true,
+    "isParkingIncluded": true,
+    "beds": 2,
+    "baths": 2,
+    "squareFeet": 1100,
+    "propertyType": "Apartment",
+    "postedDate": "2024-01-10T00:00:00Z",
+    "averageRating": 4.6,
+    "numberOfReviews": 18,
+    "locationId": 101,
+    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+  },
+  {
+    "id": 102,
+    "name": "Koramangala Furnished Apartment",
+    "description": "Spacious apartment ideal for working professionals.",
+    "phoneNumber": "+918923187401",
+    "pricePerMonth": 9500,
+    "securityDeposit": 9500,
+    "applicationFee": 600,
+    "photoUrls": [
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/3.png",
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/4.png"
+    ],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "Parking",
+      "Refrigerator",
+      "Microwave"
+    ],
+    "highlights": [
+      "RecentlyRenovated",
+      "CloseToTransit"
+    ],
+    "isPetsAllowed": false,
+    "isParkingIncluded": true,
+    "beds": 3,
+    "baths": 3,
+    "squareFeet": 1450,
+    "propertyType": "Apartment",
+    "postedDate": "2024-01-15T00:00:00Z",
+    "averageRating": 4.8,
+    "numberOfReviews": 24,
+    "locationId": 102,
+    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+  },
+  {
+    "id": 103,
+    "name": "Bellandur Tech Park Apartment",
+    "description": "Comfortable apartment near ORR with tech park access.",
+    "phoneNumber": "+918923187401",
+    "pricePerMonth": 7800,
+    "securityDeposit": 7800,
+    "applicationFee": 500,
+    "photoUrls": [
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/5.png",
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/6.png"
+    ],
+    "amenities": [
+      "AirConditioning",
+      "Gym",
+      "Parking",
+      "HighSpeedInternet"
+    ],
+    "highlights": [
+      "HighSpeedInternetAccess",
+      "QuietNeighborhood"
+    ],
+    "isPetsAllowed": true,
+    "isParkingIncluded": true,
+    "beds": 2,
+    "baths": 2,
+    "squareFeet": 1200,
+    "propertyType": "Apartment",
+    "postedDate": "2024-01-20T00:00:00Z",
+    "averageRating": 4.5,
+    "numberOfReviews": 15,
+    "locationId": 103,
+    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+  },
+  {
+    "id": 104,
+    "name": "Whitefield Gated Villa",
+    "description": "Independent villa in a quiet gated community.",
+    "phoneNumber": "+918923187401",
+    "pricePerMonth": 9900,
+    "securityDeposit": 9900,
+    "applicationFee": 800,
+    "photoUrls": [
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/7.png",
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/8.png"
+    ],
+    "amenities": [
+      "Parking",
+      "AirConditioning",
+      "WiFi"
+    ],
+    "highlights": [
+      "QuietNeighborhood",
+      "GreatView"
+    ],
+    "isPetsAllowed": true,
+    "isParkingIncluded": true,
+    "beds": 4,
+    "baths": 4,
+    "squareFeet": 2600,
+    "propertyType": "Villa",
+    "postedDate": "2024-01-22T00:00:00Z",
+    "averageRating": 4.9,
+    "numberOfReviews": 12,
+    "locationId": 104,
+    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+  },
+  {
+    "id": 105,
+    "name": "Jayanagar Independent Rooms",
+    "description": "Quiet residential rooms in a prime Bangalore locality.",
+    "phoneNumber": "+918923187401",
+    "pricePerMonth": 8800,
+    "securityDeposit": 8800,
+    "applicationFee": 700,
+    "photoUrls": [
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/9.png",
+      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/10.png"
+    ],
+    "amenities": [
+      "Parking",
+      "WasherDryer",
+      "AirConditioning",
+      "Refrigerator"
+    ],
+    "highlights": [
+      "QuietNeighborhood",
+      "SmokeFree"
+    ],
+    "isPetsAllowed": true,
+    "isParkingIncluded": true,
+    "beds": 3,
+    "baths": 3,
+    "squareFeet": 1800,
+    "propertyType": "Rooms",
+    "postedDate": "2024-01-25T00:00:00Z",
+    "averageRating": 4.7,
+    "numberOfReviews": 20,
+    "locationId": 105,
+    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+  }
+]

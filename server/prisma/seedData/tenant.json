@@ -1,0 +1,18 @@
+[
+  {
+    "id": 101,
+    "cognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0",
+    "name": "anikettenent",
+    "email": "aniketiw9@gmail.com",
+    "phoneNumber": "1234567890",
+    "properties": {
+      "connect": [
+        { "id": 101 },
+        { "id": 102 },
+        { "id": 103 },
+        { "id": 104 },
+        { "id": 105 }
+      ]
+    }
+  }
+]

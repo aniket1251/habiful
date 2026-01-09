@@ -1,0 +1,47 @@
+[
+  {
+    "id": 101,
+    "country": "India",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "address": "12th Main Rd, Indiranagar",
+    "postalCode": "560038",
+    "coordinates": "POINT(77.6408 12.9719)"
+  },
+  {
+    "id": 102,
+    "country": "India",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "address": "5th Block, Koramangala",
+    "postalCode": "560095",
+    "coordinates": "POINT(77.6245 12.9352)"
+  },
+  {
+    "id": 103,
+    "country": "India",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "address": "Outer Ring Rd, Bellandur",
+    "postalCode": "560103",
+    "coordinates": "POINT(77.6784 12.9304)"
+  },
+  {
+    "id": 104,
+    "country": "India",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "address": "Whitefield Main Rd, Whitefield",
+    "postalCode": "560066",
+    "coordinates": "POINT(77.7499 12.9698)"
+  },
+  {
+    "id": 105,
+    "country": "India",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "address": "Jayanagar 4th Block",
+    "postalCode": "560041",
+    "coordinates": "POINT(77.5937 12.9250)"
+  }
+]
