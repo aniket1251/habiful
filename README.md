@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://main.d3tjyubg6cgnal.amplifyapp.com"><img src="https://img.shields.io/badge/🔗_Live_Demo-Visit_Habiful-dc2828?style=for-the-badge" alt="Live Demo" /></a>
+  <a href="https://habiful.vercel.app"><img src="https://img.shields.io/badge/🔗_Live_Demo-Visit_Habiful-dc2828?style=for-the-badge" alt="Live Demo" /></a>
 </p>
 
 <p align="center">
@@ -19,38 +19,22 @@
   <img src="https://img.shields.io/badge/Prisma-6-2D3748?logo=prisma" alt="Prisma" />
   <img src="https://img.shields.io/badge/PostgreSQL-PostGIS-4169E1?logo=postgresql" alt="PostgreSQL" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/AWS-Cognito_|_S3_|_EC2-FF9900?logo=amazonaws" alt="AWS" />
+  <img src="https://img.shields.io/badge/AWS-EC2_|_S3_| RDS-FF9900?logo=amazonaws" alt="AWS" />
 </p>
 
 ---
 
 ## Live Demo
 
-> **https://main.d3tjyubg6cgnal.amplifyapp.com**
-
-The frontend is deployed on **AWS Amplify**, the backend API on **AWS EC2**, and the database on **Amazon RDS** (PostgreSQL + PostGIS).
+> **https://habiful.vercel.app**
 
 ---
 
 ## Preview
 
 <p align="center">
-  <img src="https://7060rs-s3-images.s3.us-east-1.amazonaws.com/Screenshot+(40).png" alt="Habiful Search Page" width="100%" />
+  <img src="https://res.cloudinary.com/dsouhrbvy/image/upload/v1773672748/Screenshot_42_vhokit.png" alt="Habiful Search Page" width="100%" />
 </p>
-
-<details>
-<summary><strong>More Screenshots</strong> (click to expand)</summary>
-
-| Page | Description |
-|------|-------------|
-| **Landing** | Hero section with location search, features grid, how-it-works cards, and CTA |
-| **Search** | Split view with Mapbox map, property cards, and advanced filters panel |
-| **Property Detail** | Image carousel, overview, amenities, highlights, fees, and location map |
-| **Manager Dashboard** | Property list, tenant overview per property, application management with approve/deny |
-| **Tenant Dashboard** | Favorites, active residences with lease details, billing history, application tracking |
-| **Auth** | Sign in / sign up with role selection (Tenant or Manager) |
-
-</details>
 
 ---
 
@@ -63,7 +47,6 @@ The frontend is deployed on **AWS Amplify**, the backend API on **AWS EC2**, and
                            │
               ┌────────────▼────────────┐
               │   Next.js 15 (React 19) │
-              │   AWS Amplify Hosting   │
               │   Mapbox GL · Redux     │
               └────────────┬────────────┘
                            │ REST API
@@ -168,7 +151,7 @@ The frontend is deployed on **AWS Amplify**, the backend API on **AWS EC2**, and
                       │
               ┌───────┼───────┐
               │       │       │
-         ┌────▼──┐ ┌──▼───┐ ┌▼────────────┐
+         ┌────▼──┐ ┌──▼───┐ ┌─▼────────────┐
          │ Lease │ │Tenant│ │ Application  │
          │       │ │      │ │              │
          └───┬───┘ └──────┘ └──────────────┘
@@ -197,50 +180,50 @@ Tenant ◄──► Property (M:N — current residences)
 
 ```
 habiful/
-├── client/                          # Next.js frontend
-│   ├── public/                      # Static assets (images, icons)
+├── client/
+│   ├── public/
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── (auth)/              # Auth provider (Cognito/Amplify)
-│   │   │   ├── (dashboard)/         # Authenticated dashboard pages
-│   │   │   │   ├── managers/        # Properties, applications, settings
-│   │   │   │   └── tenants/         # Favorites, applications, residences, settings
-│   │   │   ├── (nondashboard)/      # Public pages
-│   │   │   │   ├── landing/         # Hero, features, discover, CTA, footer
-│   │   │   │   └── search/          # Property search with map + filters + listings
-│   │   │   ├── (legal)/             # Terms, privacy, cookies, FAQ
-│   │   │   ├── about/               # About page
-│   │   │   ├── contact/             # Contact form
-│   │   │   ├── signin/              # Sign in
-│   │   │   └── signup/              # Sign up
-│   │   ├── components/              # Shared UI components
-│   │   │   ├── ui/                  # shadcn/ui primitives
-│   │   │   ├── Card.tsx             # Property card (grid view)
-│   │   │   ├── CardCompact.tsx      # Property card (list view)
-│   │   │   ├── ApplicationCard.tsx  # Application detail card
-│   │   │   ├── Navbar.tsx           # Global navigation
-│   │   │   ├── AppSidebar.tsx       # Dashboard sidebar
+│   │   │   ├── (auth)/
+│   │   │   ├── (dashboard)/
+│   │   │   │   ├── managers/
+│   │   │   │   └── tenants/
+│   │   │   ├── (nondashboard)/
+│   │   │   │   ├── landing/
+│   │   │   │   └── search/
+│   │   │   ├── (legal)/
+│   │   │   ├── about/
+│   │   │   ├── contact/
+│   │   │   ├── signin/
+│   │   │   └── signup/
+│   │   ├── components/
+│   │   │   ├── ui/
+│   │   │   ├── Card.tsx
+│   │   │   ├── CardCompact.tsx
+│   │   │   ├── ApplicationCard.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── AppSidebar.tsx
 │   │   │   └── ...
-│   │   ├── hooks/                   # Custom React hooks
-│   │   ├── lib/                     # Utilities, schemas, constants
-│   │   ├── state/                   # Redux store, API slice, filters
-│   │   └── types/                   # TypeScript type definitions
+│   │   ├── hooks/
+│   │   ├── lib/
+│   │   ├── state/
+│   │   └── types/
 │   └── package.json
 │
-├── server/                          # Express backend
+├── server/
 │   ├── prisma/
-│   │   ├── schema.prisma            # Database schema (7 models)
-│   │   ├── seed.ts                  # Database seeder
-│   │   ├── seedData/                # JSON seed data
+│   │   ├── schema.prisma
+│   │   ├── seed.ts
+│   │   ├── seedData/
 │   │   └── migrations/
 │   ├── src/
-│   │   ├── controllers/             # Route handlers
-│   │   ├── middlewares/             # JWT auth middleware
-│   │   ├── routes/                  # Express route definitions
-│   │   ├── utils/                   # Helper functions
-│   │   └── index.ts                 # Server entry point
-│   ├── tests/k6/                    # Load testing suite
-│   ├── ecosystem.config.js          # PM2 config
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── routes/
+│   │   ├── utils/
+│   │   └── index.ts
+│   ├── tests/k6/
+│   ├── ecosystem.config.js
 │   └── package.json
 │
 └── README.md
