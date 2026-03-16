@@ -24,12 +24,6 @@
 
 ---
 
-## Live Demo
-
-> **https://habiful.vercel.app**
-
----
-
 ## Preview
 
 <p align="center">
