@@ -1,0 +1,202 @@
+stages:
+  - install
+  - lint
+  - test
+  - build
+  - deploy
+
+variables:
+  NODE_VERSION: "22"
+
+# ─── Cache ───────────────────────────────────────────────────────────
+.server-cache: &server-cache
+  cache:
+    key: server-$CI_COMMIT_REF_SLUG
+    paths:
+      - server/node_modules/
+    policy: pull
+
+.client-cache: &client-cache
+  cache:
+    key: client-$CI_COMMIT_REF_SLUG
+    paths:
+      - client/node_modules/
+      - client/.next/cache/
+    policy: pull
+
+# ─── Change detection rules ─────────────────────────────────────────
+.server-changes: &server-changes
+  rules:
+    - changes:
+        - server/**/*
+      when: always
+    - when: never
+
+.client-changes: &client-changes
+  rules:
+    - changes:
+        - client/**/*
+      when: always
+    - when: never
+
+# ─── INSTALL ─────────────────────────────────────────────────────────
+server:install:
+  stage: install
+  image: node:${NODE_VERSION}-alpine
+  <<: *server-changes
+  cache:
+    key: server-$CI_COMMIT_REF_SLUG
+    paths:
+      - server/node_modules/
+    policy: push
+  script:
+    - apk add --no-cache openssl libc6-compat
+    - cd server
+    - npm ci --prefer-offline
+    - npm run prisma:generate
+  artifacts:
+    paths:
+      - client/src/types/prismaTypes.d.ts
+    expire_in: 1 day
+
+client:install:
+  stage: install
+  image: node:${NODE_VERSION}-alpine
+  <<: *client-changes
+  cache:
+    key: client-$CI_COMMIT_REF_SLUG
+    paths:
+      - client/node_modules/
+      - client/.next/cache/
+    policy: push
+  script:
+    - apk add --no-cache libc6-compat
+    - cd client
+    - npm ci --prefer-offline
+
+# ─── LINT ────────────────────────────────────────────────────────────
+client:lint:
+  stage: lint
+  image: node:${NODE_VERSION}-alpine
+  <<: *client-cache
+  <<: *client-changes
+  needs: ["client:install", "server:install"]
+  script:
+    - cd client
+    - npm run lint
+
+server:lint:
+  stage: lint
+  image: node:${NODE_VERSION}-alpine
+  <<: *server-cache
+  <<: *server-changes
+  needs: ["server:install"]
+  script:
+    - cd server
+    - npm run lint
+
+# ─── TEST ────────────────────────────────────────────────────────────
+server:test:
+  stage: test
+  image: node:${NODE_VERSION}-alpine
+  <<: *server-cache
+  <<: *server-changes
+  needs: ["server:install"]
+  variables:
+    JWT_PRIVATE_KEY: $JWT_PRIVATE_KEY
+    JWT_PUBLIC_KEY: $JWT_PUBLIC_KEY
+    CLOUDINARY_CLOUD_NAME: "test"
+    CLOUDINARY_API_KEY: "test"
+    CLOUDINARY_API_SECRET: "test"
+  script:
+    - cd server
+    - JEST_JUNIT_OUTPUT_FILE="junit.xml" npm run test:unit -- --reporters=default --reporters=jest-junit
+  artifacts:
+    when: always
+    reports:
+      junit: server/junit.xml
+    expire_in: 7 days
+
+client:test:
+  stage: test
+  image: node:${NODE_VERSION}-alpine
+  <<: *client-cache
+  <<: *client-changes
+  needs: ["client:install", "server:install"]
+  script:
+    - cd client
+    - JEST_JUNIT_OUTPUT_FILE="junit.xml" npm run test:unit -- --reporters=default --reporters=jest-junit
+  artifacts:
+    when: always
+    reports:
+      junit: client/junit.xml
+    expire_in: 7 days
+
+# ─── BUILD ───────────────────────────────────────────────────────────
+server:build:
+  stage: build
+  image: node:${NODE_VERSION}-alpine
+  <<: *server-cache
+  <<: *server-changes
+  needs: ["server:test"]
+  script:
+    - cd server
+    - npm run build
+  artifacts:
+    paths:
+      - server/dist/
+    expire_in: 1 day
+
+client:build:
+  stage: build
+  image: node:${NODE_VERSION}-alpine
+  <<: *client-cache
+  <<: *client-changes
+  needs: ["client:lint", "client:test", "server:install"]
+  variables:
+    NEXT_PUBLIC_API_BASE_URL: $NEXT_PUBLIC_API_BASE_URL
+    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: $NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
+  script:
+    - cd client
+    - npm run build
+  artifacts:
+    paths:
+      - client/.next/
+    expire_in: 1 day
+
+# ─── DEPLOY ──────────────────────────────────────────────────────────
+server:deploy:
+  stage: deploy
+  image: alpine:latest
+  needs: ["server:build"]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - server/**/*
+      when: manual
+  environment:
+    name: production
+    url: $SERVER_PRODUCTION_URL
+  before_script:
+    - apk add --no-cache curl
+  script:
+    - echo "Triggering server deploy..."
+    - curl -X POST $RENDER_SERVER_DEPLOY_HOOK
+
+client:deploy:
+  stage: deploy
+  image: alpine:latest
+  needs: ["client:build"]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - client/**/*
+      when: manual
+  environment:
+    name: production
+    url: $CLIENT_PRODUCTION_URL
+  before_script:
+    - apk add --no-cache curl
+  script:
+    - echo "Triggering client deploy..."
+    - curl -X POST $VERCEL_CLIENT_DEPLOY_HOOK

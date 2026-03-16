@@ -1,13 +1,19 @@
-import express  from "express";
-import { addFavoriteProperty, createTenant, getCurrentResidences, getTenant, removeFavoriteProperty, updateTenant } from "../controllers/tenantControllers";
+import express from "express";
+import {
+  getTenant,
+  updateTenant,
+  getCurrentResidences,
+  addFavoriteProperty,
+  removeFavoriteProperty,
+} from "../controllers/tenantControllers";
+import { uploadProfileImage } from "../middlewares/uploadMiddleware";
 
 const router = express.Router();
 
-router.get("/:cognitoId", getTenant);
-router.put("/:cognitoId", updateTenant);
-router.post("/", createTenant);
-router.get("/:cognitoId/current-residences", getCurrentResidences);
-router.post("/:cognitoId/favorites/:propertyId", addFavoriteProperty);
-router.delete("/:cognitoId/favorites/:propertyId", removeFavoriteProperty);
+router.get("/:id", getTenant);
+router.put("/:id", uploadProfileImage, updateTenant);
+router.get("/:id/current-residences", getCurrentResidences);
+router.post("/:id/favorites/:propertyId", addFavoriteProperty);
+router.delete("/:id/favorites/:propertyId", removeFavoriteProperty);
 
 export default router;

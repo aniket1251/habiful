@@ -6,7 +6,7 @@
     "rent": 8500,
     "deposit": 8500,
     "propertyId": 101,
-    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+    "tenantId": 101
   },
   {
     "id": 202,
@@ -15,7 +15,7 @@
     "rent": 9500,
     "deposit": 9500,
     "propertyId": 102,
-    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+    "tenantId": 101
   },
   {
     "id": 203,
@@ -24,7 +24,7 @@
     "rent": 7800,
     "deposit": 7800,
     "propertyId": 103,
-    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+    "tenantId": 101
   },
   {
     "id": 204,
@@ -33,7 +33,7 @@
     "rent": 9900,
     "deposit": 9900,
     "propertyId": 104,
-    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+    "tenantId": 101
   },
   {
     "id": 205,
@@ -42,6 +42,6 @@
     "rent": 8800,
     "deposit": 8800,
     "propertyId": 105,
-    "tenantCognitoId": "748804d8-9071-7002-fd22-2d5beee28fa0"
+    "tenantId": 101
   }
 ]

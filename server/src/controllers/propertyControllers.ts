@@ -1,17 +1,11 @@
 import { Request, Response } from "express";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { wktToGeoJSON } from "@terraformer/wkt";
-import { S3Client } from "@aws-sdk/client-s3";
 import { Location } from "@prisma/client";
-import { Upload } from "@aws-sdk/lib-storage";
 import axios from "axios";
-import mime from "mime-types";
+import { uploadToCloudinary } from "../utils/uploadUtils";
 
 const prisma = new PrismaClient();
-
-const s3Client = new S3Client({
-    region: process.env.AWS_REGION!,
-});
 
 export const getProperties = async (
     req: Request,
@@ -154,7 +148,7 @@ export const getProperties = async (
     } catch (error: any) {
         res
             .status(500)
-            .json({ message: `Error retrieving properties: ${error.message}` });
+            .json({ message: "Something went wrong while loading properties." });
     }
 };
 
@@ -194,7 +188,7 @@ export const getProperty = async (
     } catch (err: any) {
         res
             .status(500)
-            .json({ message: `Error retrieving property: ${err.message}` });
+            .json({ message: "Something went wrong while loading property details." });
     }
 };
 
@@ -210,7 +204,7 @@ export const createProperty = async (
             state,
             country,
             postalCode,
-            managerCognitoId,
+            managerId,
             ...propertyData
         } = req.body;
         const geocodingUrl = `https://nominatim.openstreetmap.org/search?${new URLSearchParams({
@@ -253,22 +247,8 @@ export const createProperty = async (
             throw new Error(`Invalid image buffer: ${file.originalname}`);
             }
 
-            const contentType =
-            mime.lookup(file.originalname) || "image/jpeg";
-
-            const uploadParams = {
-            Bucket: process.env.S3_BUCKET_NAME!,
-            Key: `properties/${Date.now()}-${file.originalname}`,
-            Body: file.buffer, 
-            ContentType: contentType, 
-            };
-
-            const uploadResult = await new Upload({
-            client: s3Client,
-            params: uploadParams,
-            }).done();
-
-            return uploadResult.Location;
+            const publicId = `${Date.now()}-${file.originalname.replace(/\.[^/.]+$/, "")}`;
+            return uploadToCloudinary(file.buffer, publicId);
         })
         );
 
@@ -278,7 +258,7 @@ export const createProperty = async (
                 ...propertyData,
                 photoUrls,
                 locationId: location?.id,
-                managerCognitoId,
+                managerId: parseInt(managerId),
             amenities: Array.isArray(propertyData.amenities)
                 ? propertyData.amenities
                 : typeof propertyData.amenities === "string"
@@ -308,7 +288,7 @@ export const createProperty = async (
     } catch (err: any) {
         res
             .status(500)
-            .json({ message: `Error creating property: ${err.message}` });
+            .json({ message: "Something went wrong while creating the property." });
     }
 };
 
@@ -330,6 +310,6 @@ export const getPropertyLeases = async (
     } catch (err: any) {
         res
             .status(500)
-            .json({ message: `Error retrieving property leases: ${err.message}` });
+            .json({ message: "Something went wrong while loading property leases." });
     }
 };

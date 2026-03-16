@@ -16,7 +16,7 @@ const ImagePreviews = ({ images }: ImagePreviewsProps) => {
   };
 
   return (
-    <div className="relative h-[450px] w-full">
+    <div className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] xl:h-[550px] w-full">
       {images.map((image: string, index: number) => (
         <div
           key={index}
@@ -36,19 +36,34 @@ const ImagePreviews = ({ images }: ImagePreviewsProps) => {
       <button
         onClick={handlePrev}
         disabled={totalImages <= 1}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary-700 bg-opacity-50 p-2 rounded-full focus:outline-none focus:ring focus:ring-secondary-300 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-primary-700 bg-opacity-50 p-2 sm:p-3 rounded-full focus:outline-none focus:ring focus:ring-secondary-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-opacity-70 transition-all"
         aria-label="Previous Image"
       >
-        <ChevronLeft className="text-white" />
+        <ChevronLeft className="text-white w-5 h-5 sm:w-6 sm:h-6" />
       </button>
       <button
         onClick={handleNext}
         disabled={totalImages <= 1}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary-700 bg-opacity-50 p-2 rounded-full focus:outline-none focus:ring focus:ring-secondary-300 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-primary-700 bg-opacity-50 p-2 sm:p-3 rounded-full focus:outline-none focus:ring focus:ring-secondary-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-opacity-70 transition-all"
         aria-label="Next Image"
       >
-        <ChevronRight className="text-white" />
+        <ChevronRight className="text-white w-5 h-5 sm:w-6 sm:h-6" />
       </button>
+      {/* Image indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {images.map((_, index: number) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
+              index === currentImageIndex
+                ? "bg-white"
+                : "bg-white/50 hover:bg-white/75"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

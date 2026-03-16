@@ -86,10 +86,10 @@ model Property {
   averageRating     Float?       @default(0)
   numberOfReviews   Int?         @default(0)
   locationId        Int
-  managerCognitoId  String
+  managerId         Int
 
   location     Location      @relation(fields: [locationId], references: [id])
-  manager      Manager       @relation(fields: [managerCognitoId], references: [cognitoId])
+  manager      Manager       @relation(fields: [managerId], references: [id])
   leases       Lease[]
   applications Application[]
   favoritedBy  Tenant[]      @relation("TenantFavorites")
@@ -97,26 +97,30 @@ model Property {
 }
 
 model Manager {
-  id          Int    @id @default(autoincrement())
-  cognitoId   String @unique
-  name        String
-  email       String
-  phoneNumber String
+  id              Int     @id @default(autoincrement())
+  name            String
+  email           String  @unique
+  phoneNumber     String
+  passwordHash    String
+  profileImageUrl String?
 
   managedProperties Property[]
+  refreshTokens     RefreshToken[]
 }
 
 model Tenant {
-  id          Int    @id @default(autoincrement())
-  cognitoId   String @unique
-  name        String
-  email       String
-  phoneNumber String
+  id              Int     @id @default(autoincrement())
+  name            String
+  email           String  @unique
+  phoneNumber     String
+  passwordHash    String
+  profileImageUrl String?
 
   properties   Property[]    @relation("TenantProperties")
   favorites    Property[]    @relation("TenantFavorites")
   applications Application[]
   leases       Lease[]
+  refreshTokens RefreshToken[]
 }
 
 model Location {
@@ -136,7 +140,7 @@ model Application {
   applicationDate DateTime
   status          ApplicationStatus
   propertyId      Int
-  tenantCognitoId String
+  tenantId        Int
   name            String
   email           String
   phoneNumber     String
@@ -144,21 +148,21 @@ model Application {
   leaseId         Int?              @unique
 
   property Property @relation(fields: [propertyId], references: [id])
-  tenant   Tenant   @relation(fields: [tenantCognitoId], references: [cognitoId])
+  tenant   Tenant   @relation(fields: [tenantId], references: [id])
   lease    Lease?   @relation(fields: [leaseId], references: [id])
 }
 
 model Lease {
-  id              Int      @id @default(autoincrement())
-  startDate       DateTime
-  endDate         DateTime
-  rent            Float
-  deposit         Float
-  propertyId      Int
-  tenantCognitoId String
+  id        Int      @id @default(autoincrement())
+  startDate DateTime
+  endDate   DateTime
+  rent      Float
+  deposit   Float
+  propertyId Int
+  tenantId   Int
 
   property    Property     @relation(fields: [propertyId], references: [id])
-  tenant      Tenant       @relation(fields: [tenantCognitoId], references: [cognitoId])
+  tenant      Tenant       @relation(fields: [tenantId], references: [id])
   application Application?
   payments    Payment[]
 }
@@ -173,4 +177,16 @@ model Payment {
   leaseId       Int
 
   lease Lease @relation(fields: [leaseId], references: [id])
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  tokenHash String   @unique
+  userId    Int
+  userRole  String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  manager Manager? @relation(fields: [userId], references: [id], map: "RefreshToken_manager_fkey")
+  tenant  Tenant?  @relation(fields: [userId], references: [id], map: "RefreshToken_tenant_fkey")
 }

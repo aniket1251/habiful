@@ -79,25 +79,31 @@ async function main() {
   const dataDirectory = path.join(__dirname, "seedData");
 
   const orderedFileNames = [
-    "location.json", // No dependencies
-    "manager.json", // No dependencies
-    "property.json", // Depends on location and manager
-    "tenant.json", // No dependencies
-    "lease.json", // Depends on property and tenant
-    "application.json", // Depends on property and tenant
-    "payment.json", // Depends on lease
+    "location.json",
+    "manager.json",
+    "tenant.json",
+    "property.json",
+    "lease.json",
+    "application.json",
+    "payment.json",
   ];
+
+  // Clear RefreshToken table first
+  try {
+    await prisma.refreshToken.deleteMany({});
+    console.log("Cleared data from RefreshToken");
+  } catch {
+    // Table might not exist yet
+  }
 
   // Delete all existing data
   await deleteAllData(orderedFileNames);
 
-  // Seed data
+  // Seed data in order
   for (const fileName of orderedFileNames) {
     const filePath = path.join(dataDirectory, fileName);
     const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    const modelName = toPascalCase(
-      path.basename(fileName, path.extname(fileName))
-    );
+    const modelName = toPascalCase(path.basename(fileName, path.extname(fileName)));
     const modelNameCamel = toCamelCase(modelName);
 
     if (modelName === "Location") {
@@ -106,9 +112,7 @@ async function main() {
       const model = (prisma as any)[modelNameCamel];
       try {
         for (const item of jsonData) {
-          await model.create({
-            data: item,
-          });
+          await model.create({ data: item });
         }
         console.log(`Seeded ${modelName} with data from ${fileName}`);
       } catch (error) {
@@ -116,10 +120,23 @@ async function main() {
       }
     }
 
-    // Reset the sequence after seeding each model
-    await resetSequence(modelName);
-
+    await resetSequence(modelNameCamel);
     await sleep(1000);
+  }
+
+  // Connect tenant to properties (many-to-many TenantProperties)
+  try {
+    await prisma.tenant.update({
+      where: { id: 101 },
+      data: {
+        properties: {
+          connect: [{ id: 101 }, { id: 102 }, { id: 103 }, { id: 104 }, { id: 105 }],
+        },
+      },
+    });
+    console.log("Connected tenant to properties");
+  } catch (error) {
+    console.error("Error connecting tenant to properties:", error);
   }
 }
 

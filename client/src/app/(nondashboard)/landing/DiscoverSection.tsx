@@ -27,24 +27,24 @@ const DiscoverSection = () => {
         whileInView="visible"
         viewport={{once:true, amount:0.8}}
         variants={containerVariants}
-        className='pt-0 pb-12 bg-white mb-16'
+        className='pt-0 pb-12 bg-white mb-8 sm:mb-16'
     >
-        <div className='max-w-6xl xl:max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
+        <div className='max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16'>
             <motion.div
                 variants={itemVariants}
-                className='my-12 text-center'
+                className='my-8 sm:my-12 text-center'
             >
-                <h2 className='text-3xl font-semibold leading-tight text-gray-800'>
+                <h2 className='text-2xl sm:text-3xl font-semibold leading-tight text-gray-800'>
                     How Habiful Works
                 </h2>
-                <p className='mt-4 text-lg text-gray-600'>
+                <p className='mt-3 sm:mt-4 text-base sm:text-lg text-gray-600'>
                     Finding a rental shouldn&apos;t feel overwhelming.
                 </p>
-                <p className='mt-2 text-gray-500 max-w-3xl mx-auto'>
+                <p className='mt-2 text-sm sm:text-base text-gray-500 max-w-3xl mx-auto px-2'>
                     Habiful brings together quality listings, smart search, and a clean experience to help you discover rental homes that feel right — faster and with less effort.
                 </p>
             </motion.div>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 text-center'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-12 xl:gap-16 text-center'>
                {[
                 {
                     imageSrc:"/landing-icon-wand.png",
@@ -83,7 +83,7 @@ const DiscoverCard = ({
     title:string;
     description:string;
 })=>(
-    <div className='px-4 py-12 shadow-lg rounded-lg bg-primary-50 md:h-72'>
+    <div className='px-4 py-8 sm:py-12 shadow-lg rounded-lg bg-primary-50 h-auto sm:h-auto md:h-72'>
         <div className='bg-primary-700 p-[0.6rem] rounded-full mb-4 h-10 w-10 mx-auto'>
             <Image
                 src={imageSrc}
@@ -93,8 +93,8 @@ const DiscoverCard = ({
                 alt={title}
             />
         </div>
-        <h3 className='mt-4 text-xl font-medium text-gray-800'>{title}</h3>
-        <p className='mt-2 text-base text-gray-500'>{description}</p>
+        <h3 className='mt-4 text-lg sm:text-xl font-medium text-gray-800'>{title}</h3>
+        <p className='mt-2 text-sm sm:text-base text-gray-500'>{description}</p>
     </div>
 )
 

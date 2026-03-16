@@ -13,7 +13,7 @@ export const getLeases = async (req:Request, res:Response): Promise<void> =>{
         })
         res.json(leases);
     }catch(err:any){
-        res.status(500).json({message:`Error retrieving leases: ${err.message}`});
+        res.status(500).json({message:"Something went wrong while fetching leases."});
     }
 };
 
@@ -25,6 +25,6 @@ export const getLeasePayments = async (req:Request, res:Response): Promise<void>
         })
         res.json(payments);
     }catch(err:any){
-        res.status(500).json({message:`Error retrieving lease payments: ${err.message}`});
+        res.status(500).json({message:"Something went wrong while fetching payments."});
     }
 };

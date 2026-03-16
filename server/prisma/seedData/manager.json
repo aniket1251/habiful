@@ -1,9 +1,9 @@
 [
   {
     "id": 101,
-    "cognitoId": "c4188478-2021-70a0-9ede-24473787ee94",
     "name": "aniketmanager",
     "email": "ag125aa@gmail.com",
-    "phoneNumber": "8923187401"
+    "phoneNumber": "8923187401",
+    "passwordHash": "$2a$10$3/pElR/cKg5I4X/zckJzYuAnQ1wpi64rDU9Wmq6ky/Sc15ZBKA0u6"
   }
 ]

@@ -1,10 +1,10 @@
-import express  from "express";
-import { createManager, getManager, getManagerProperties, updateManager } from "../controllers/managerControllers";
+import express from "express";
+import { getManager, getManagerProperties, updateManager } from "../controllers/managerControllers";
+import { uploadProfileImage } from "../middlewares/uploadMiddleware";
 const router = express.Router();
 
-router.get("/:cognitoId", getManager);
-router.put("/:cognitoId", updateManager);
-router.get("/:cognitoId/properties", getManagerProperties);
-router.post("/", createManager);
+router.get("/:id", getManager);
+router.put("/:id", uploadProfileImage, updateManager);
+router.get("/:id/properties", getManagerProperties);
 
 export default router;

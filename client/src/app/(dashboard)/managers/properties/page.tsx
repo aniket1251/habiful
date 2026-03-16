@@ -2,17 +2,18 @@
 import Card from "@/components/Card";
 import Header from "@/components/Header";
 import Loading from "@/components/Loading";
-import { useGetAuthUserQuery, useGetManagerPropertiesQuery } from "@/state/api";
+import { useGetManagerPropertiesQuery } from "@/state/api";
+import { useAuth } from "@/app/(auth)/authProvider";
 import React from "react";
 
 const Properties = () => {
-  const { data: authUser } = useGetAuthUserQuery();
+  const { user } = useAuth();
   const {
     data: managerProperties,
     isLoading,
     error,
-  } = useGetManagerPropertiesQuery(authUser?.userInfo.cognitoId || "", {
-    skip: !authUser?.userInfo.cognitoId,
+  } = useGetManagerPropertiesQuery(user?.id || 0, {
+    skip: !user?.id,
   });
 
   if (isLoading) return <Loading />;
@@ -20,24 +21,15 @@ const Properties = () => {
 
   return (
     <div className="dashboard-container">
-      <Header
-        title="My Properties"
-        subtitle="View and manage your property listings"
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <Header title="My Properties" subtitle="View and manage your property listings" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
         {managerProperties?.map((property, idx) => (
-          <Card
-            key={idx}
-            property={property}
-            isFavorite={false}
-            onFavoriteToggle={() => {}}
-            showFavoriteButton={false}
-            propertyLink={`/managers/properties/${property?.id}`}
-          />
+          <Card key={idx} property={property} isFavorite={false} onFavoriteToggle={() => {}}
+            showFavoriteButton={false} propertyLink={`/managers/properties/${property?.id}`} />
         ))}
       </div>
       {(!managerProperties || managerProperties.length === 0) && (
-        <p>You don&lsquo;t manage any properties</p>
+        <p className="text-sm sm:text-base text-gray-500">You don&lsquo;t manage any properties</p>
       )}
     </div>
   );

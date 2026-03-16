@@ -67,30 +67,3 @@ export const toE164 = (phoneNumber: {
 
   return /^\+[1-9]\d{1,14}$/.test(e164) ? e164 : null;
 };
-
-export const createNewUserInDatabase = async (
-  user: any,
-  idToken: any,
-  userRole: string,
-  fetchWithBQ: any
-) => {
-  const createEndpoint =
-    userRole?.toLowerCase() === "manager" ? "/managers" : "/tenants";
-
-  const createUserResponse = await fetchWithBQ({
-    url: createEndpoint,
-    method: "POST",
-    body: {
-      cognitoId: user.userId,
-      name: user.username,
-      email: idToken?.payload?.email || "",
-      phoneNumber: "",
-    },
-  });
-
-  if (createUserResponse.error) {
-    throw new Error("Failed to create user record");
-  }
-
-  return createUserResponse;
-};

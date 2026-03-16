@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { authMiddleware } from "./middlewares/authMiddleware";
 
 /* ROUTE IMPORT */
+import authRoutes from "./routes/authRoutes";
 import tenantRoutes from "./routes/tenantRoutes";
 import managerRoutes from "./routes/managerRoutes";
 import propertyRoutes from "./routes/propertyRoutes";
@@ -22,13 +24,18 @@ app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    credentials: true,
+}));
 
 
 /* ROUTES */
 app.get("/", (req,res)=>{
     res.send("This is the home route");
 });
+app.use("/auth", authRoutes);
 app.use("/applications", applicationRoutes);
 app.use("/leases", leaseRoutes);
 app.use("/properties", propertyRoutes);

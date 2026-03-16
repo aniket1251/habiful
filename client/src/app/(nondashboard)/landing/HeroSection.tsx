@@ -53,7 +53,7 @@ const HeroSection = () => {
     };
 
   return (
-    <div className='relative h-screen'>
+    <div className='relative h-screen min-h-[600px]'>
         <Image
         src="/landing-splash.jpg"
         alt='Rentiful Rental Platform Hero Section'
@@ -68,11 +68,11 @@ const HeroSection = () => {
         transition={{duration:0.8}}
         className='absolute top-1/3 transform-translate-x-1/2 -translate-y-1/2 text-center w-full'
         >
-            <div className='max-w-4xl mx-auto mt-60 px-16 sm:px-12'>
-                <h1 className='text-5xl font-bold text-white mb-4'>
+            <div className='max-w-4xl mx-auto mt-32 sm:mt-48 md:mt-60 px-4 sm:px-8 md:px-12'>
+                <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4'>
                     Find a place that fits the way you live today
                 </h1>
-                <p className='text-xl text-white mb-8'>
+                <p className='text-sm sm:text-base md:text-lg lg:text-xl text-white mb-6 sm:mb-8'>
                     Explore thoughtfully curated rental homes designed to match your lifestyle, location, and everyday needs.
                 </p>
                 <div className='flex justify-center'>
@@ -80,12 +80,12 @@ const HeroSection = () => {
                         type='text'
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder='Search by city, neighborhood, or address'
-                        className='w-full max-w-lg rounded-none rounded-l-xl border-none bg-white h-12'
+                        placeholder='Search by city or address'
+                        className='w-full max-w-[200px] sm:max-w-lg rounded-none rounded-l-xl border-none bg-white h-10 sm:h-12 text-sm sm:text-base'
                     />
                     <Button
                         onClick={handleLocationSearch}
-                        className='bg-secondary-600 text-white rounded-none rounded-r-xl border-none hover:bg-secondary-500 h-12'
+                        className='bg-secondary-600 text-white rounded-none rounded-r-xl border-none hover:bg-secondary-500 h-10 sm:h-12 px-3 sm:px-4 text-sm sm:text-base'
                     >
                         Search
                     </Button>

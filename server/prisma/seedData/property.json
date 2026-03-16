@@ -8,8 +8,8 @@
     "securityDeposit": 8500,
     "applicationFee": 500,
     "photoUrls": [
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/1.png",
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/2.png"
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800"
     ],
     "amenities": [
       "AirConditioning",
@@ -32,7 +32,7 @@
     "averageRating": 4.6,
     "numberOfReviews": 18,
     "locationId": 101,
-    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+    "managerId": 101
   },
   {
     "id": 102,
@@ -43,8 +43,8 @@
     "securityDeposit": 9500,
     "applicationFee": 600,
     "photoUrls": [
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/3.png",
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/4.png"
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
     ],
     "amenities": [
       "AirConditioning",
@@ -67,7 +67,7 @@
     "averageRating": 4.8,
     "numberOfReviews": 24,
     "locationId": 102,
-    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+    "managerId": 101
   },
   {
     "id": 103,
@@ -78,8 +78,8 @@
     "securityDeposit": 7800,
     "applicationFee": 500,
     "photoUrls": [
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/5.png",
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/6.png"
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800"
     ],
     "amenities": [
       "AirConditioning",
@@ -101,7 +101,7 @@
     "averageRating": 4.5,
     "numberOfReviews": 15,
     "locationId": 103,
-    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+    "managerId": 101
   },
   {
     "id": 104,
@@ -112,8 +112,8 @@
     "securityDeposit": 9900,
     "applicationFee": 800,
     "photoUrls": [
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/7.png",
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/8.png"
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800"
     ],
     "amenities": [
       "Parking",
@@ -134,7 +134,7 @@
     "averageRating": 4.9,
     "numberOfReviews": 12,
     "locationId": 104,
-    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+    "managerId": 101
   },
   {
     "id": 105,
@@ -145,8 +145,8 @@
     "securityDeposit": 8800,
     "applicationFee": 700,
     "photoUrls": [
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/9.png",
-      "https://7060rs-s3-images.s3.us-east-1.amazonaws.com/properties/10.png"
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800"
     ],
     "amenities": [
       "Parking",
@@ -168,6 +168,6 @@
     "averageRating": 4.7,
     "numberOfReviews": 20,
     "locationId": 105,
-    "managerCognitoId": "c4188478-2021-70a0-9ede-24473787ee94"
+    "managerId": 101
   }
 ]

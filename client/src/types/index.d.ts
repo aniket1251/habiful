@@ -1,5 +1,4 @@
 import { LucideIcon } from "lucide-react";
-import { AuthUser } from "aws-amplify/auth";
 import { Manager, Tenant, Property, Application } from "./prismaTypes";
 import { MotionProps as OriginalMotionProps } from "framer-motion";
 
@@ -131,14 +130,41 @@ declare global {
     userType: "manager" | "tenant";
   }
 
+  interface AuthUser {
+    id: number;
+    name: string;
+    email: string;
+    phoneNumber: string;
+    role: string;
+    profileImageUrl?: string | null;
+  }
+
+  interface AuthContextType {
+    user: AuthUser | null;
+    isAuthenticated: boolean;
+    isLoading: boolean;
+    accessToken: string | null;
+    login: (email: string, password: string) => Promise<void>;
+    register: (data: {
+      name: string;
+      email: string;
+      password: string;
+      phoneNumber: string;
+      role: string;
+      profileImage?: File | null;
+    }) => Promise<void>;
+    signOut: () => void;
+    refreshSession: () => Promise<string | null>;
+  }
+
   interface User {
-    cognitoInfo: AuthUser;
     userInfo: Tenant | Manager;
-    userRole: JsonObject | JsonPrimitive | JsonArray;
+    userRole: string;
   }
 
   interface StaticPageProps {
     title: string;
+    subtitle?: string;
     children: React.ReactNode;
   };
 }
